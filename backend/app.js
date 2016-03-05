@@ -16,8 +16,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var routes = require('./routes/index');
+var routes = require('./routes');
 
+// Database Config
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/nbcu-hack');
 
 var app = express();
 // get the app environment from Cloud Foundry
