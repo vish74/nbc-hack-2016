@@ -18,9 +18,9 @@ var session = require('express-session');
 
 var routes = require('./routes');
 
-// Database Config
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/nbcu-hack');
+// Database Config TEMPORARILY DISABLED
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/nbcu-hack');
 
 var app = express();
 // get the app environment from Cloud Foundry
@@ -38,7 +38,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', routes.first);
+app.get('/', routes.index);
+app.get('/user', routes.oneUser);
 
 
 // catch 404 and forward to error handler
