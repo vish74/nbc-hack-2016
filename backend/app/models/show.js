@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 var showSchema = new Schema({
     name: { type: String, required: false },
     description: { type: String, required: false },
-    matchScore: { type: Number, required: false },
+    personality: { type: String, required: false },
+    tone: { type: String, required: false },
     picURL: { type: String, required: false },
     episodeDuration: { type: Number, required: false },
     numberOfSeasons: { type: Number, required: false },

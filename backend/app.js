@@ -38,8 +38,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Get Routes
 app.get('/', routes.index);
+app.get('/admin', routes.admin);
 app.get('/user', routes.oneUser);
+
+//Post Routes
+app.post('/user/to-watch/:show_id', routes.addToWatch);
+app.post('/user/have-watched/:show_id', routes.addHaveWatched);
+app.post('/user/suggested/:show_id', routes.addSuggested); //probably not needed, might use for ingesting shows
+app.post('/show/:show_name', routes.findShow); //find show by name
 
 
 // catch 404 and forward to error handler

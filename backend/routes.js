@@ -1,7 +1,35 @@
-exports.index = function (req, res) {
+//web routes
+exports.index = function(req, res) {
     res.render('../app/views/index');
 };
 
+exports.admin = function(req, res) {
+    res.render('../app/views/admin');
+};
+
+//find show by name
+exports.findShow = function(req, res) {
+
+};
+
+//Add to lists
+function addList(listType, showId){
+
+}
+
+exports.addToWatch = function(req, res) {
+
+};
+
+exports.addHaveWatched = function(req, res) {
+
+};
+
+exports.addSuggested = function(req, res) {
+
+};
+
+//Get user with lists packed in
 exports.oneUser = function(req, res) {
 	var fakeResult = {
 		'name' : 'Fake User',
@@ -95,4 +123,4 @@ exports.oneUser = function(req, res) {
 	};
 	
 	res.json(fakeResult);
-}
+};
