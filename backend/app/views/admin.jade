@@ -5,5 +5,35 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     h1 Admin
-    form(role='form')
-	    input(type='text', name="trip_notes", placeholder='Enter Trip Notes')
+
+    h2 Add Show
+    form(role='form', action='/show/create', method="post")
+        input(type='text', name="name", placeholder="name")
+        input(type='text', name="description", placeholder="description")
+        input(type='text', name="personality", placeholder="personality")
+        input(type='text', name="tone", placeholder="tone")
+        input(type='text', name="picURL", placeholder="picURL")
+        input(type='text', name="episodeDuration", placeholder="episodeDuration")
+        input(type='text', name="numberOfSeasons", placeholder="numberOfSeasons")
+        input(type='text', name="whereToWatch", placeholder="whereToWatch")
+        input(type='submit', value='Submit')
+
+    h2 Add User
+    form(role='form', method="post", action='/user/create')
+        input(type='text', name="name", placeholder="name")
+        input(type='text', name="personality", placeholder="personality")
+        input(type='submit', value='Submit')
+
+    h2 Add Show to User
+    h3 Want to Watch
+    form(role='form', action='/user/to-watch/admin', method="post")
+        input(type='text', name="show_id", placeholder='Show ID')
+        input(type='submit', value='Submit')
+    h3 Have Watched
+    form(role='form', action='/user/have-watched/admin', method="post")
+        input(type='text', name="show_id", placeholder='Show ID')
+        input(type='submit', value='Submit')
+    h3 Suggestion
+    form(role='form', action='/user/suggested/admin', method="post")
+        input(type='text', name="show_id", placeholder='Show ID')
+        input(type='submit', value='Submit')

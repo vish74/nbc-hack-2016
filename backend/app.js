@@ -18,9 +18,9 @@ var session = require('express-session');
 
 var routes = require('./routes');
 
-// Database Config TEMPORARILY DISABLED
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/nbcu-hack');
+// Database Config
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/nbcu-hack');
 
 var app = express();
 // get the app environment from Cloud Foundry
@@ -44,6 +44,8 @@ app.get('/admin', routes.admin);
 app.get('/user', routes.oneUser);
 
 //Post Routes
+app.post('/show/create', routes.createShow);
+app.post('/user/create', routes.createUser);
 app.post('/user/to-watch/:show_id', routes.addToWatch);
 app.post('/user/have-watched/:show_id', routes.addHaveWatched);
 app.post('/user/suggested/:show_id', routes.addSuggested); //probably not needed, might use for ingesting shows
@@ -52,9 +54,9 @@ app.post('/show/:show_name', routes.findShow); //find show by name
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
@@ -62,30 +64,30 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, appEnv.bind, function() {
 
-  // print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
+    // print a message when the server starts listening
+    console.log("server starting on " + appEnv.url);
 });
 
 module.exports = app;
