@@ -1,6 +1,6 @@
 applications:
 - disk_quota: 1024M
-  name: name-something-here
+  name: nbc-hack
   command: node app.js
   path: .
   instances: 1
