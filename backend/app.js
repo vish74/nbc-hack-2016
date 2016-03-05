@@ -49,7 +49,7 @@ app.post('/user/create', routes.createUser);
 app.post('/user/to-watch/:show_id', routes.addToWatch);
 app.post('/user/have-watched/:show_id', routes.addHaveWatched);
 app.post('/user/suggested/:show_id', routes.addSuggested); //probably not needed, might use for ingesting shows
-app.post('/show/:show_name', routes.findShow); //find show by name
+app.post('/show/', routes.findShow); //find show by name, perhaps not needed
 
 
 // catch 404 and forward to error handler

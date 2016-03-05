@@ -43,7 +43,7 @@ exports.createShow = function(req, res) {
 
 //find show by name
 exports.findShow = function(req, res) {
-
+    
 };
 
 //Add to lists
