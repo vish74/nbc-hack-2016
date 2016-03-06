@@ -11,6 +11,7 @@ var showSchema = new Schema({
     episodeDuration: { type: Number, required: false },
     numberOfSeasons: { type: Number, required: false },
     whereToWatch: { type: String, required: false },
+    rating: { type: Number, required: false },
     matchScore: { type: String, required: false }, //is generated on the fly in exports.oneUser, is never stored in the DB
     created_at: Date,
     updated_at: Date
