@@ -50,4 +50,6 @@ html
         h4 Show Name: #{show.name}
         p Show ID: #{show._id}
         p
+            a(href='/admin/show/edit/#{show._id}') Edit Show
+            span  
             a(href='/show/delete/#{show._id}') Delele Show

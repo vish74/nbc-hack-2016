@@ -23,6 +23,30 @@ exports.admin = function(req, res) {
     });
 };
 
+exports.editShow = function(req, res){
+    Show.findOne({"_id": req.params.show_id}, function(err, show){
+        res.render('../app/views/editShow', {
+            show: show
+        });
+    });
+}
+
+exports.updateShow = function(req, res){
+    Show.findOne({"_id": req.params.show_id}, function(err, show){
+        for (prop in req.body){
+            if(req.body[prop] != ''){
+                show[prop] = req.body[prop];
+            }
+        }
+        show.save(function(err, show){
+            if(err){console.log('err: ', err)}
+            res.redirect('/admin/show/edit/' + req.params.show_id);
+        })
+    });
+}
+
+
+//direct run routes
 exports.testWatson = function(req, res){
     var watsonApi = require('./app/helpers/watsonApi');
 
@@ -224,6 +248,7 @@ exports.createShow = function(req, res) {
     });
 };
 
+//App Routes
 //find show by name
 exports.findShow = function(req, res) {
     Show.findOne({"name" : req.body.name}, function(err, show){

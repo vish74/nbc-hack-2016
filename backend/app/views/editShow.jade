@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title Edit Show
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h1 #{show.name}
+    h2 Edit Show
+    p
+        a(href='/admin') back
+    form(role='form', action='/show/edit/#{show._id}', method="post")
+        p name
+        input(type='text', name="name", style="width: 100%" placeholder="#{show.name}")
+        p description
+        input(type='text', name="description", style="width: 100%" placeholder="#{show.description}")
+        p personality
+        input(type='text', name="personality", style="width: 100%" placeholder="#{show.personality}")
+        p tone
+        input(type='text', name="tone", style="width: 100%" placeholder="#{show.tone}")
+        p picURL
+        input(type='text', name="picURL", style="width: 100%" placeholder="#{show.picURL}")
+        p episodeDuration
+        input(type='text', name="episodeDuration", style="width: 100%" placeholder="#{show.episodeDuration}")
+        p numberOfSeasons
+        input(type='text', name="numberOfSeasons", style="width: 100%" placeholder="#{show.numberOfSeasons}")
+        p whereToWatch
+        input(type='text', name="whereToWatch", style="width: 100%" placeholder="#{show.whereToWatch}")
+        p
+        input(type='submit', value='Submit')
