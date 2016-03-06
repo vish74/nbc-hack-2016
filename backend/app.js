@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Get Routes
 app.get('/', routes.index);
 app.get('/admin', routes.admin);
+app.get('/admin/show/edit/:show_id', routes.editShow);
 app.get('/admin/load-samples', routes.loadSampleData);
 app.get('/admin/test-watson', routes.testWatson);
 app.get('/user', routes.oneUser);
@@ -49,6 +50,7 @@ app.get('/user/delete/:user_id', routes.deleteUser);
 
 //Post Routes
 app.post('/show/create', routes.createShow);
+app.post('/show/edit/:show_id', routes.updateShow);
 app.post('/user/create', routes.createUser);
 app.post('/user/to-watch/:show_id', routes.addToWatch);
 app.post('/user/have-watched/:show_id', routes.addHaveWatched);
