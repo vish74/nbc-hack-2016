@@ -11,7 +11,7 @@ import Alamofire
 import EZSwiftExtensions
 import MGSwipeTableCell
 
-class ViewController: UIViewController, UITableViewDataSource, MGSwipeTableCellDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, MGSwipeTableCellDelegate, UICollectionViewDataSource,UICollectionViewDelegate {
 
 	@IBOutlet weak var tavView: UIView!
 
@@ -144,20 +144,35 @@ class ViewController: UIViewController, UITableViewDataSource, MGSwipeTableCellD
 		}
 		else
 		{
-			print(self.view.bounds.width)
-			popView = UIView(x: 5, y: 50, w: 400, h: 450)
+      //Background
+			popView = UIView(x: 5, y: 50, w: 400, h: 420)
 			let imageView = UIImageView(frame: popView.frame)
 			imageView.image = UIImage(named: "pop")
 			popView.addSubview(imageView)
 
+      //Label
+      let label = UILabel(x: 75, y: 100, w: 400, h: 50)
+      label.text = "Filter"
+      label.font = UIFont(name: label.font.fontName, size: 30)
+      label.textColor = .grayColor()
+      popView.addSubview(label)
+      
+      //SubLabel
+      let subLabel = UILabel(x: 75, y: 125, w: 400, h: 50)
+      subLabel.text = "What mood are you into today?"
+      subLabel.font = UIFont(name: label.font.fontName, size: 15)
+      subLabel.textColor = .grayColor()
+      popView.addSubview(subLabel)
+      
+      
 			// Collection
 			let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 			layout.itemSize = CGSize(width: 75, height: 75)
 
-			collection = UICollectionView(frame: CGRect(x: 80, y: 200, w: 250, h: 350), collectionViewLayout: layout)
+			collection = UICollectionView(frame: CGRect(x: 80, y: 170, w: 250, h: 350), collectionViewLayout: layout)
 			collection.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "CELL")
 			self.collection.dataSource = self
-			// self.collection.delegate = self
+			 self.collection.delegate = self
 			self.collection.backgroundColor = UIColor.clearColor()
 
 			popView.addSubview(collection)
@@ -174,12 +189,14 @@ class ViewController: UIViewController, UITableViewDataSource, MGSwipeTableCellD
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CELL", forIndexPath: indexPath)
 //    cell.titleLabel.text="MEH"
 
-		let label = UIImageView(frame: CGRect(x: (cell.size.width - 40) / 2, y: (cell.size.width - 40) / 2, w: 40, h: 40))
+		let label = UIImageView(frame: CGRect(x: (cell.size.width - 45) / 2, y: (cell.size.width - 45) / 2, w: 45, h: 45))
 		label.image = UIImage(named: "\(indexPath.row)")
 
 		cell.addSubview(label)
 		cell.backgroundColor = UIColor(hexString: "25BAB4")
-
+    cell.layer.cornerRadius = 5
+    cell.layer.masksToBounds = true
+    
 		return cell
 	}
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
@@ -187,4 +204,10 @@ class ViewController: UIViewController, UITableViewDataSource, MGSwipeTableCellD
 
 		return CGSizeMake(66, 58)
 	}
+  
+  var moods = ["Fee"]
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    print("\(indexPath.row) selected")
+    self.popView.removeFromSuperview()
+  }
 }
