@@ -16,8 +16,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var routes = require('./routes/index');
+var routes = require('./routes');
 
+// Database Config
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/nbcu-hack');
 
 var app = express();
 // get the app environment from Cloud Foundry
@@ -35,14 +38,28 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', routes.first);
+//Get Routes
+app.get('/', routes.index);
+app.get('/admin', routes.admin);
+app.get('/user', routes.oneUser);
+app.get('/show/delete/:show_id', routes.deleteShow);
+app.get('/user/delete/:user_id', routes.deleteUser);
 
+//Post Routes
+app.post('/show/create', routes.createShow);
+app.post('/user/create', routes.createUser);
+app.post('/user/to-watch/:show_id', routes.addToWatch);
+app.post('/user/have-watched/:show_id', routes.addHaveWatched);
+app.post('/user/suggested/:show_id', routes.addSuggested); //probably not needed, might use for ingesting shows
+app.post('/show/', routes.findShow); //find show by name, perhaps not needed
 
+//Remove this later
+app.get('/tonetest', routes.tonetest);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
@@ -50,30 +67,30 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, appEnv.bind, function() {
 
-  // print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
+    // print a message when the server starts listening
+    console.log("server starting on " + appEnv.url);
 });
 
 module.exports = app;
