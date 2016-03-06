@@ -42,8 +42,12 @@ html
     for user in users
         h4 User Name: #{user.name}
         p User ID: #{user._id}
+        p
+            a(href='/user/delete/#{user._id}') Delele User
 
     h2 Shows
     for show in shows
         h4 Show Name: #{show.name}
         p Show ID: #{show._id}
+        p
+            a(href='/show/delete/#{show._id}') Delele Show

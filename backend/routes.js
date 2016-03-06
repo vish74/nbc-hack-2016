@@ -20,6 +20,24 @@ exports.admin = function(req, res) {
     });
 };
 
+exports.deleteUser = function(req, res) {
+    User.remove({ 
+        _id: req.params.user_id
+    }, function (err) {
+        res.redirect('/admin');
+        if (err){console.log('err: ', err)};
+    });
+};
+
+exports.deleteShow = function(req, res) {
+    Show.remove({ 
+        _id: req.params.show_id
+    }, function (err) {
+        res.redirect('/admin');
+        if (err){console.log('err: ', err)};
+    });
+};
+
 //add user
 exports.createUser = function(req, res) {
     User.create({ 
@@ -27,8 +45,7 @@ exports.createUser = function(req, res) {
         personality: req.body.personality
     }, function (err, user) {
         res.redirect('/admin');
-        if (err) return err;
-        if (user) return user;
+        if (err){console.log('err: ', err)};
     });
 };
 
@@ -45,8 +62,7 @@ exports.createShow = function(req, res) {
         whereToWatch: req.body.whereToWatch
     }, function (err, user) {
         res.redirect('/admin');
-        if (err) return err;
-        if (user) return user;
+        if (err){console.log('err: ', err)};
     });
 };
 
