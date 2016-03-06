@@ -3,6 +3,7 @@ var User = require('./app/models/user');
 var Show = require('./app/models/show');
 var watson = require('./app/helpers/watsonApi');
 var tw = require('./app/helpers/twitterApi');
+var ingestion = require('./app/helpers/show-ingestion');
 
 //web routes
 exports.index = function(req, res) {
@@ -18,9 +19,164 @@ exports.admin = function(req, res) {
                 users: users,
                 shows: shows
             });
-        })
+        });
     });
 };
+
+exports.testWatson = function(req, res){
+    var watsonApi = require('./app/helpers/watsonApi');
+
+    ingestion.showsJSON1.forEach(function(show){
+        var text = show.description;
+        // console.log('text: ', text)
+        var rawShow = show;
+
+        testWatson = function(watsonCallback){
+            watsonApi.tone(text, watsonCallback);
+        }
+
+        testWatson(function(body){
+            var parsedBody = JSON.parse(body);
+            console.log('parsedBody: ', parsedBody);
+
+            if(parsedBody.error){return}
+
+            var rawTone = {};
+            parsedBody.document_tone.tone_categories[0].tones.forEach(function(tone){
+                rawTone[tone.tone_id] = tone.score;
+            });
+            parsedBody.document_tone.tone_categories[1].tones.forEach(function(tone){
+                rawTone[tone.tone_id] = tone.score;
+            });
+
+            var rawPersonality = {};
+            parsedBody.document_tone.tone_categories[2].tones.forEach(function(tone){
+                rawPersonality[tone.tone_id.slice(0, -5)] = tone.score;
+            });
+
+            var processedTone = {
+                "dark": (rawTone.fear + rawTone.sadness + rawTone.disgust + rawTone.anger)/4,
+                "inspiring": (rawTone.joy + rawTone.fear + rawPersonality.openness + rawTone.confident)/4,
+                "feel_good": (rawTone.joy + rawPersonality.extraversion + rawPersonality.agreeableness)/3,
+                "quirky": (rawTone.joy + rawPersonality.openness + rawPersonality.neuroticism)/3,
+                "emotional": (rawTone.joy + rawTone.sadness + rawTone.anger + rawPersonality.agreeableness + rawTone.analytical + rawPersonality.conscientiousness)/6,
+                "funny": (rawTone.joy + rawTone.anger + rawPersonality.agreeableness + rawTone.confident)/4,
+                "cerebral": (rawTone.joy + rawTone.anger + rawTone.disgust + rawTone.analytical + rawPersonality.neuroticism + rawPersonality.conscientiousness)/6,
+                "suspenseful": (rawTone.joy + rawTone.disgust + rawPersonality.neuroticism + rawPersonality.openness + rawTone.tentative)/5,
+                "exciting": (rawTone.joy + rawTone.fear + rawPersonality.openness + rawTone.confident + rawTone.tentative)/5
+            };
+
+            var toneThreshold = .35; //values below this should be considered false, and at or above true
+            var toneBooleans = {};
+
+            for (prop in processedTone){
+                if(processedTone[prop] < toneThreshold){
+                    toneBooleans[prop] = false;
+                }else{
+                    toneBooleans[prop] = true;
+                }
+            }
+
+            var show = new Show({
+                name: rawShow.name,
+                description: rawShow.description,
+                personality: JSON.stringify(rawPersonality),
+                tone: JSON.stringify(toneBooleans),
+                picURL: rawShow.picURL,
+                episodeDuration: rawShow.episodeDuration,
+                numberOfSeasons: rawShow.numberOfSeasons,
+                whereToWatch: rawShow.whereToWatch
+            });
+
+            show.save(function(err, savedShow){
+                if(err){
+                    console.log('err: ', err);
+                }
+                console.log('savedShow: ', savedShow);
+                // res.send(savedShow);
+            });
+        });
+    });
+    res.send('might have processed your data');
+}
+
+    //SPLIT ------=========-------======~~~~~~~~~~~~~~========--------
+
+    // var text = "NBC will debut Howie Mandel's \"Take It All\" (formerly \"Howie Mandel's White Elephant\"), an exciting new game show, to be stripped throughout the holiday week of December 10-14 (9:00-10:00 p.m. ET all nights) and to conclude on Monday, December 17.\r\n\r\nIn the show, a contestant selects and opens a prize worth thousands of dollars: dream prizes such as luxury cars, exotic trips, jewelry and VIP experiences. Then, the next player is faced with a dilemma: do they steal a prize that has already been revealed, or do they take a chance with another unopened prize, hoping what's inside is worth more?\r\n\r\nBut that's just the beginning. When there are only two contestants left, the players have a life-changing choice to make: keep the prizes they have - or try to take all the prizes. If both players choose to \"keep mine,\" they will each keep the prizes they have won in the prior rounds. If one player chooses \"keep mine\" and the other chooses to \"take it all,\" the player that chose \"take it all\" will go home with all the prizes - theirs and their opponents. But if both choose \"take it all,\" they both go home with nothing. The stakes are insanely high as each contestant grapples with the choice of a lifetime.\r\n\r\n\"Take It All\" is from Universal Television and Alevy Productions. Mandel (NBC's \"America's Got Talent\"), Scott St. John and Mike Marks are the executive producers."
+
+    // var rawShow = {
+    //     "name": "Take It All",
+    //     "description": "NBC will debut Howie Mandel's \"Take It All\" (formerly \"Howie Mandel's White Elephant\"), an exciting new game show, to be stripped throughout the holiday week of December 10-14 (9:00-10:00 p.m. ET all nights) and to conclude on Monday, December 17.\r\n\r\nIn the show, a contestant selects and opens a prize worth thousands of dollars: dream prizes such as luxury cars, exotic trips, jewelry and VIP experiences. Then, the next player is faced with a dilemma: do they steal a prize that has already been revealed, or do they take a chance with another unopened prize, hoping what's inside is worth more?\r\n\r\nBut that's just the beginning. When there are only two contestants left, the players have a life-changing choice to make: keep the prizes they have - or try to take all the prizes. If both players choose to \"keep mine,\" they will each keep the prizes they have won in the prior rounds. If one player chooses \"keep mine\" and the other chooses to \"take it all,\" the player that chose \"take it all\" will go home with all the prizes - theirs and their opponents. But if both choose \"take it all,\" they both go home with nothing. The stakes are insanely high as each contestant grapples with the choice of a lifetime.\r\n\r\n\"Take It All\" is from Universal Television and Alevy Productions. Mandel (NBC's \"America's Got Talent\"), Scott St. John and Mike Marks are the executive producers.",
+    //     "whereToWatch": "http://www.nbc.com/take-it-all/",
+    //     "picURL": "http://content.internetvideoarchive.com/content/photos/8153/87179_hqdefault.jpg",
+    //     "episodeDuration": 60,
+    //     "numberOfSeasons": 4
+    // };
+
+    // testWatson = function(watsonCallback){
+    //     watsonApi.tone(text, watsonCallback);
+    // }
+
+    // testWatson(function(body){
+    //     var parsedBody = JSON.parse(body);
+    //     console.log('parsedBody: ', parsedBody);
+
+    //     var rawTone = {};
+    //     parsedBody.document_tone.tone_categories[0].tones.forEach(function(tone){
+    //         rawTone[tone.tone_id] = tone.score;
+    //     });
+    //     parsedBody.document_tone.tone_categories[1].tones.forEach(function(tone){
+    //         rawTone[tone.tone_id] = tone.score;
+    //     });
+
+    //     var rawPersonality = {};
+    //     parsedBody.document_tone.tone_categories[2].tones.forEach(function(tone){
+    //         rawPersonality[tone.tone_id.slice(0, -5)] = tone.score;
+    //     });
+
+    //     var processedTone = {
+    //         "dark": (rawTone.fear + rawTone.sadness + rawTone.disgust + rawTone.anger)/4,
+    //         "inspiring": (rawTone.joy + rawTone.fear + rawPersonality.openness + rawTone.confident)/4,
+    //         "feel_good": (rawTone.joy + rawPersonality.extraversion + rawPersonality.agreeableness)/3,
+    //         "quirky": (rawTone.joy + rawPersonality.openness + rawPersonality.neuroticism)/3,
+    //         "emotional": (rawTone.joy + rawTone.sadness + rawTone.anger + rawPersonality.agreeableness + rawTone.analytical + rawPersonality.conscientiousness)/6,
+    //         "funny": (rawTone.joy + rawTone.anger + rawPersonality.agreeableness + rawTone.confident)/4,
+    //         "cerebral": (rawTone.joy + rawTone.anger + rawTone.disgust + rawTone.analytical + rawPersonality.neuroticism + rawPersonality.conscientiousness)/6,
+    //         "suspenseful": (rawTone.joy + rawTone.disgust + rawPersonality.neuroticism + rawPersonality.openness + rawTone.tentative)/5,
+    //         "exciting": (rawTone.joy + rawTone.fear + rawPersonality.openness + rawTone.confident + rawTone.tentative)/5
+    //     };
+
+    //     var toneThreshold = .35; //values below this should be considered false, and at or above true
+    //     var toneBooleans = {};
+
+    //     for (prop in processedTone){
+    //         if(processedTone[prop] < toneThreshold){
+    //             toneBooleans[prop] = false;
+    //         }else{
+    //             toneBooleans[prop] = true;
+    //         }
+    //     }
+
+    //     var show = new Show({
+    //         name: rawShow.name,
+    //         description: rawShow.description,
+    //         personality: JSON.stringify(rawPersonality),
+    //         tone: JSON.stringify(toneBooleans),
+    //         picURL: rawShow.picURL,
+    //         episodeDuration: rawShow.episodeDuration,
+    //         numberOfSeasons: rawShow.numberOfSeasons,
+    //         whereToWatch: rawShow.whereToWatch
+    //     });
+
+    //     show.save(function(err, savedShow){
+    //         if(err){
+    //             console.log('err: ', err);
+    //         }
+    //         console.log('savedShow: ', savedShow);
+    //         res.send(savedShow);
+    //     });
+    // });
+// }
 
 exports.deleteUser = function(req, res) {
     User.remove({ 
@@ -162,24 +318,26 @@ exports.addSuggested = function(req, res) {
 //Get user with lists packed in
 exports.oneUser = function(req, res) {
     function matchScoreAlgorithm(userPersonality, showPersonality){
+
         //weignts, constants
         var neuroticismWeight = 0.2;
         var opennessWeight = 0.3;
-        var extroversionWeight = 0.25;
+        var extraversionWeight = 0.25;
         var conscientiousnessWeight = 0.125;
         var agreeablenessWeight = 0.125;
 
         //scores, variable
-        var neuroticismScore = Math.abs(userPersonality.Neuroticism - showPersonality.Neuroticism);
-        var opennessScore = Math.abs(userPersonality.Openness - showPersonality.Openness);
-        var extroversionScore = Math.abs(userPersonality.extroversion - showPersonality.extroversion);
-        var conscientiousnessScore = Math.abs(userPersonality.Conscientiousness - showPersonality.Conscientiousness);
-        var agreeablenessScore = Math.abs(userPersonality.Agreeableness - showPersonality.Agreeableness);
+        var neuroticismScore = Math.abs(userPersonality.Neuroticism - showPersonality.neuroticism);
+        var opennessScore = Math.abs(userPersonality.Openness - showPersonality.openness);
+        var extraversionScore = Math.abs(userPersonality.extraversion - showPersonality.extraversion);
+        var conscientiousnessScore = Math.abs(userPersonality.Conscientiousness - showPersonality.conscientiousness);
+        var agreeablenessScore = Math.abs(userPersonality.Agreeableness - showPersonality.agreeableness);
+
 
         //weighted scores
         var weightedNeuroticismScore = neuroticismScore * neuroticismWeight;
         var weightedOpennessScore = opennessScore * opennessWeight;
-        var weightedExtroversionScore = extroversionScore * extroversionWeight;
+        var weightedExtraversionScore = extraversionScore * extraversionWeight;
         var weightedConscientiousnessScore = conscientiousnessScore * conscientiousnessWeight;
         var weightedAgreeablenessScore = agreeablenessScore * agreeablenessWeight;
 
@@ -200,9 +358,20 @@ exports.oneUser = function(req, res) {
             var parsedUserPersonality = JSON.parse(users[0].personality);
             var parsedShowPersonality = JSON.parse(show.personality);
 
-            //apply match score algorithm to all 3 show arrays
             users[0]._suggested_shows[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
+        });
+
+        users[0]._watched_shows.forEach(function(show, index, array){
+            var parsedUserPersonality = JSON.parse(users[0].personality);
+            var parsedShowPersonality = JSON.parse(show.personality);
+
             users[0]._watched_shows[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
+        });
+
+        users[0]._shows_to_watch.forEach(function(show, index, array){
+            var parsedUserPersonality = JSON.parse(users[0].personality);
+            var parsedShowPersonality = JSON.parse(show.personality);
+
             users[0]._shows_to_watch[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
         });
 
@@ -213,23 +382,23 @@ exports.oneUser = function(req, res) {
 };
 
 exports.loadSampleData = function(req, res){
-    var lucasUser = new User({ "name" : "Lucas Farah", "personality" : "{\"Neuroticism\" : 0.23852331727306597, \"Openness\" : 0.19985873018309458, \"Extroversion\" : 0.5250972377475239, \"Conscientiousness\" : 0.6896876186993252, \"Agreeableness\" : 0.4824766686919894}"});
+    var lucasUser = new User({ "name" : "Lucas Farah", "personality" : "{\"Neuroticism\" : 0.23852331727306597, \"Openness\" : 0.19985873018309458, \"Extraversion\" : 0.5250972377475239, \"Conscientiousness\" : 0.6896876186993252, \"Agreeableness\" : 0.4824766686919894}"});
 
     lucasUser.save(function(err){
         if(err){console.log(err);}
     });
 
-    var show1 = new Show({"name" : "Game of Thrones", "description" : "While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, return after thousands of years in the North.", "personality" : "{\"Neuroticism\" : 0.43852331727306597, \"Openness\" : 0.53985873018309458, \"Extroversion\" : 0.3250972377475239, \"Conscientiousness\" : 0.9896876186993252, \"Agreeableness\" : 0.6824766686919894}", "tone" : "{\"Anger\": 0.65324, \"Disgust\": 0.15324, \"Fear\": 0.25324, \"Joy\": 0.55324, \"Sadness\": 0.85324, \"Analytical\": 0.75324,  \"Confident\": 0.95324,  \"Tentative\": 0.75324,  \"Anger\": 0.15324}", "picURL" : "http://www.osunatierradedragones.es/images/drgon.jpg", "episodeDuration" : 60, "numberOfSeasons" : 5, "whereToWatch" : "http://www.hbogo.com/game-of-thrones-interactive-features/"});
+    var show1 = new Show({"name" : "Game of Thrones", "description" : "While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, return after thousands of years in the North.", "personality" : "{\"Neuroticism\" : 0.43852331727306597, \"Openness\" : 0.53985873018309458, \"Extraversion\" : 0.3250972377475239, \"Conscientiousness\" : 0.9896876186993252, \"Agreeableness\" : 0.6824766686919894}", "tone" : "{\"Anger\": 0.65324, \"Disgust\": 0.15324, \"Fear\": 0.25324, \"Joy\": 0.55324, \"Sadness\": 0.85324, \"Analytical\": 0.75324,  \"Confident\": 0.95324,  \"Tentative\": 0.75324,  \"Anger\": 0.15324}", "picURL" : "http://www.osunatierradedragones.es/images/drgon.jpg", "episodeDuration" : 60, "numberOfSeasons" : 5, "whereToWatch" : "http://www.hbogo.com/game-of-thrones-interactive-features/"});
     show1.save(function(err){
         if(err){console.log(err);}
     });
 
-    var show2 = new Show({"name" : "The Expanse", "description" : "A police detective in the asteroid belt, the first officer of an interplanetary ice freighter and an earth-bound United Nations executive slowly discover a vast.", "personality" : "{\"Neuroticism\" : 0.63852331727306597, \"Openness\" : 0.33985873018309458, \"Extroversion\" : 0.1250972377475239, \"Conscientiousness\" : 0.2896876186993252, \"Agreeableness\" : 0.8824766686919894}", "tone" : {"Anger": 0.15324, "Disgust": 0.55324, "Fear": 0.35324, "Joy": 0.25324, "Sadness": 0.65324, "Analytical": 0.95324,  "Confident": 0.35324,  "Tentative": 0.55324,  "Anger": 0.85324}, "picURL" : "http://cdn.hitfix.com/photos/6170220/The-Expanse-header.jpg", "episodeDuration" : 60, "numberOfSeasons" : 1, "whereToWatch" : "http://www.syfy.com/theexpanse/episodes"});
+    var show2 = new Show({"name" : "The Expanse", "description" : "A police detective in the asteroid belt, the first officer of an interplanetary ice freighter and an earth-bound United Nations executive slowly discover a vast.", "personality" : "{\"Neuroticism\" : 0.63852331727306597, \"Openness\" : 0.33985873018309458, \"Extraversion\" : 0.1250972377475239, \"Conscientiousness\" : 0.2896876186993252, \"Agreeableness\" : 0.8824766686919894}", "tone" : {"Anger": 0.15324, "Disgust": 0.55324, "Fear": 0.35324, "Joy": 0.25324, "Sadness": 0.65324, "Analytical": 0.95324,  "Confident": 0.35324,  "Tentative": 0.55324,  "Anger": 0.85324}, "picURL" : "http://cdn.hitfix.com/photos/6170220/The-Expanse-header.jpg", "episodeDuration" : 60, "numberOfSeasons" : 1, "whereToWatch" : "http://www.syfy.com/theexpanse/episodes"});
     show2.save(function(err){
         if(err){console.log(err);}
     });
 
-    var show3 = new Show({ "name" : "Sense8", "description" : "A group of people around the world are suddenly linked mentally, and must find a way to survive being.", "personality" : "{\"Neuroticism\" : 0.43852331727306597, \"Openness\" : 0.13985873018309458, \"Extroversion\" : 0.5250972377475239, \"Conscientiousness\" : 0.4896876186993252, \"Agreeableness\" : 0.7824766686919894}", "tone" : "{\"Anger\": 0.95324, \"Disgust\": 0.75324, \"Fear\": 0.25324, \"Joy\": 0.15324, \"Sadness\": 0.75324, \"Analytical\": 0.55324,  \"Confident\": 0.15324,  \"Tentative\": 0.65324,  \"Anger\": 0.55324}", "picURL" : "https://pbs.twimg.com/profile_images/606887678978572288/6SQ0c119.jpg", "episodeDuration" : 60, "numberOfSeasons" : 1, "whereToWatch" : "http://www.netflix.com/watch/80025744"});
+    var show3 = new Show({ "name" : "Sense8", "description" : "A group of people around the world are suddenly linked mentally, and must find a way to survive being.", "personality" : "{\"Neuroticism\" : 0.43852331727306597, \"Openness\" : 0.13985873018309458, \"Extraversion\" : 0.5250972377475239, \"Conscientiousness\" : 0.4896876186993252, \"Agreeableness\" : 0.7824766686919894}", "tone" : "{\"Anger\": 0.95324, \"Disgust\": 0.75324, \"Fear\": 0.25324, \"Joy\": 0.15324, \"Sadness\": 0.75324, \"Analytical\": 0.55324,  \"Confident\": 0.15324,  \"Tentative\": 0.65324,  \"Anger\": 0.55324}", "picURL" : "https://pbs.twimg.com/profile_images/606887678978572288/6SQ0c119.jpg", "episodeDuration" : 60, "numberOfSeasons" : 1, "whereToWatch" : "http://www.netflix.com/watch/80025744"});
     show3.save(function(err){
         if(err){console.log(err);}
     });

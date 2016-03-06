@@ -42,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', routes.index);
 app.get('/admin', routes.admin);
 app.get('/admin/load-samples', routes.loadSampleData);
+app.get('/admin/test-watson', routes.testWatson);
 app.get('/user', routes.oneUser);
 app.get('/show/delete/:show_id', routes.deleteShow);
 app.get('/user/delete/:user_id', routes.deleteUser);
