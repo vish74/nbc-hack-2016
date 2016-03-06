@@ -11,7 +11,7 @@ import Alamofire
 import EZSwiftExtensions
 import MGSwipeTableCell
 
-class ViewController: UIViewController, UITableViewDataSource, MGSwipeTableCellDelegate {
+class ViewController: UIViewController, UITableViewDataSource, MGSwipeTableCellDelegate, UICollectionViewDataSource {
 
 	@IBOutlet weak var tavView: UIView!
 
@@ -132,8 +132,59 @@ class ViewController: UIViewController, UITableViewDataSource, MGSwipeTableCellD
 		self.updateTable("_watched_shows")
 	}
 
+	var popView = UIView()
+	var collection: UICollectionView!
+
 	func filter()
 	{
 		print("filter")
+		if self.view.subviews.contains(popView)
+		{
+			popView.removeFromSuperview()
+		}
+		else
+		{
+			print(self.view.bounds.width)
+			popView = UIView(x: 5, y: 50, w: 400, h: 450)
+			let imageView = UIImageView(frame: popView.frame)
+			imageView.image = UIImage(named: "pop")
+			popView.addSubview(imageView)
+
+			// Collection
+			let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+			layout.itemSize = CGSize(width: 75, height: 75)
+
+			collection = UICollectionView(frame: CGRect(x: 80, y: 200, w: 250, h: 350), collectionViewLayout: layout)
+			collection.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "CELL")
+			self.collection.dataSource = self
+			// self.collection.delegate = self
+			self.collection.backgroundColor = UIColor.clearColor()
+
+			popView.addSubview(collection)
+
+			self.view.addSubview(popView)
+		}
+	}
+
+	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return 9
+	}
+
+	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CELL", forIndexPath: indexPath)
+//    cell.titleLabel.text="MEH"
+
+		let label = UIImageView(frame: CGRect(x: (cell.size.width - 40) / 2, y: (cell.size.width - 40) / 2, w: 40, h: 40))
+		label.image = UIImage(named: "\(indexPath.row)")
+
+		cell.addSubview(label)
+		cell.backgroundColor = UIColor(hexString: "25BAB4")
+
+		return cell
+	}
+	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+	{
+
+		return CGSizeMake(66, 58)
 	}
 }
