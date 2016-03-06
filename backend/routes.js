@@ -88,9 +88,9 @@ exports.addToWatch = function(req, res) {
         users[0]._shows_to_watch.push(showId);
         users[0]
         .save(function(err, user){
-            console.log(user);
-        })
-        res.redirect('/admin');
+            res.redirect('/admin');
+            if(err){console.log(err);}
+        });
     });
 };
 
@@ -109,9 +109,9 @@ exports.addHaveWatched = function(req, res) {
         users[0]._watched_shows.push(showId);
         users[0]
         .save(function(err, user){
-            console.log(user);
-        })
-        res.redirect('/admin');
+            res.redirect('/admin');
+            if(err){console.log(err);}
+        });
     });
 };
 
@@ -138,12 +138,29 @@ exports.addSuggested = function(req, res) {
 
 //Get user with lists packed in
 exports.oneUser = function(req, res) {
-    // function matchAlgorithm(shows, userPersonality){
-    //     users[0]._suggested_shows.forEach(function(show){
-    //         show.matchScore = count;
-    //         count += 10;
-    //     });
-    // }
+    function matchScoreAlgorithm(userPersonality, showPersonality){
+        var neuroticismWeight = 0.2;
+        var opennessWeight = 0.3;
+        var extroversionWeight = 0.25;
+        var conscientiousnessWeight = 0.125;
+        var agreeablenessWeight = 0.125;
+
+        var neuroticismScore = Math.abs(userPersonality.Neuroticism - showPersonality.Neuroticism);
+        var opennessScore = Math.abs(userPersonality.Openness - showPersonality.Openness);
+        var extroversionScore = Math.abs(userPersonality.extroversion - showPersonality.extroversion);
+        var conscientiousnessScore = Math.abs(userPersonality.Conscientiousness - showPersonality.Conscientiousness);
+        var agreeablenessScore = Math.abs(userPersonality.Agreeableness - showPersonality.Agreeableness);
+
+        var weightedNeuroticismScore = neuroticismScore * neuroticismWeight;
+        var weightedOpennessScore = opennessScore * opennessWeight;
+        var weightedExtroversionScore = extroversionScore * extroversionWeight;
+        var weightedConscientiousnessScore = conscientiousnessScore * conscientiousnessWeight;
+        var weightedAgreeablenessScore = agreeablenessScore * agreeablenessWeight;
+
+        var matchScore = 1 - (weightedNeuroticismScore + weightedOpennessScore + weightedConscientiousnessScore);
+        matchScore = Math.round(matchScore*100);
+        return matchScore;
+    }
 
     User
     .find()
@@ -151,22 +168,31 @@ exports.oneUser = function(req, res) {
     .populate('_watched_shows')
     .populate('_shows_to_watch')
     .exec(function(err, users){
-        var count = 10;
-        users[0]._suggested_shows.forEach(function(show){
-            show.matchScore = count;
-            count += 10;
+        users[0]._suggested_shows.forEach(function(show, index, array){
+            var parsedUserPersonality = JSON.parse(users[0].personality);
+            var parsedShowPersonality = JSON.parse(show.personality);
+
+            //apply match score algorithm to all 3 show arrays
+            users[0]._suggested_shows[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
+            users[0]._watched_shows[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
+            users[0]._shows_to_watch[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
         });
-        users[0]._watched_shows.forEach(function(show){
-            show.matchScore = count;
-            count += 10;
-        });
-        users[0]._shows_to_watch.forEach(function(show){
-            show.matchScore = count;
-            count += 10;
-        });
-        res.json(users[0]);
+
+        //for now only the first user created is available
+        var firstUser = users[0]
+        res.json(firstUser);
     });
 };
+
+//Remove this later
+exports.tonetest = function(req, res) {
+	var text = 'ARMONK, N.Y. - 11 Jan 2012: IBM (NYSE: IBM) today announced that it set a new U.S. patent record in 2011, marking the 19th consecutive year that the company has led the annual list of patent recipients. IBM inventors earned a record 6,180 U.S. patents in 2011, more than quadrupling Hewlett-Packard’s issuances and exceeding by six times those of Oracle/Sun.  More than 8,000 IBMers living in 46 different U.S. states and 36 countries are responsible for the companys record-breaking 2011 patent tally. IBM inventors who do not reside in the U.S. contributed to more than 26% of the companys 2011 patents.  The more than 6,000 patents IBMers received in 2011 represent a range of inventions that enable new innovations and add significant value to the companys products, services, including smarter solutions for retail, banking, healthcare, transportation and other industries. These patented inventions also span a wide range of computing technologies poised to support a new generation of more cognitive, intelligent and insight-driven systems, processes and infrastructures for smarter commerce, shopping, medicine, transportation, and more.  "IBMs commitment to invention and scientific exploration is unmatched in any industry and the results of this dedication to enabling innovation is evidenced in our nearly two decades of U.S. patent leadership,” said Ken King, general manager, Intellectual Property and vice president, Research Business Development, IBM. “The inventions we patent each year deliver significant value to IBM, our clients and partners and demonstrate a measurable return on our approximately $6 billion annual investment in research and development.”';
+	watson.watsonApi(text,function(callback){
+		res.json(callback);
+	});
+
+};
+
 
 // var fakeResult = {
 //     'name' : 'Fake User',
@@ -258,12 +284,3 @@ exports.oneUser = function(req, res) {
 //         }
 //     ],
 // };
-
-//Remove this later
-exports.tonetest = function(req, res) {
-	var text = 'ARMONK, N.Y. - 11 Jan 2012: IBM (NYSE: IBM) today announced that it set a new U.S. patent record in 2011, marking the 19th consecutive year that the company has led the annual list of patent recipients. IBM inventors earned a record 6,180 U.S. patents in 2011, more than quadrupling Hewlett-Packard’s issuances and exceeding by six times those of Oracle/Sun.  More than 8,000 IBMers living in 46 different U.S. states and 36 countries are responsible for the companys record-breaking 2011 patent tally. IBM inventors who do not reside in the U.S. contributed to more than 26% of the companys 2011 patents.  The more than 6,000 patents IBMers received in 2011 represent a range of inventions that enable new innovations and add significant value to the companys products, services, including smarter solutions for retail, banking, healthcare, transportation and other industries. These patented inventions also span a wide range of computing technologies poised to support a new generation of more cognitive, intelligent and insight-driven systems, processes and infrastructures for smarter commerce, shopping, medicine, transportation, and more.  "IBMs commitment to invention and scientific exploration is unmatched in any industry and the results of this dedication to enabling innovation is evidenced in our nearly two decades of U.S. patent leadership,” said Ken King, general manager, Intellectual Property and vice president, Research Business Development, IBM. “The inventions we patent each year deliver significant value to IBM, our clients and partners and demonstrate a measurable return on our approximately $6 billion annual investment in research and development.”';
-	watson.watsonApi(text,function(callback){
-		res.json(callback);
-	});
-
-};
