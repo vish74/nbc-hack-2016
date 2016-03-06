@@ -12,10 +12,13 @@ exports.tweet = function (name,rate) {
 
 var names = name;
 var rates = rate;
-    client.post('statuses/update', {status: 'Hey, I am watching #'+names+' ,which is'+rates+'% like me. #Flixer #NBCUHackathon'}, function (error, tweet, response) {
+    client.post('statuses/update', {status: 'Hey, I am watching #'+names+' ,which is '+rates+'% like me. #Flixer #NBCUHackathon'}, function (error, tweet, response) {
         if (error) throw error;
-        console.log(tweet);  // Tweet body.
+        //console.log(tweet);  // Tweet body.
         //console.log(response);  // Raw response object.
+
+
     });
 
 };
+

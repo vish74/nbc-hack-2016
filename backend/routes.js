@@ -2,6 +2,7 @@
 var User = require('./app/models/user');
 var Show = require('./app/models/show');
 var watson = require('./app/helpers/watsonApi');
+var tw = require('./app/helpers/twitterApi');
 
 //web routes
 exports.index = function(req, res) {
@@ -243,6 +244,12 @@ exports.tonetest = function(req, res) {
 		res.json(callback);
 	});
 
+};
+exports.twitter = function(req, res) {
+    var movie_name =req.query.q;
+    var rate = 91;
+tw.tweet(movie_name,rate);
+res.json("Done");
 };
 
 
