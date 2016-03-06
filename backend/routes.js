@@ -139,24 +139,29 @@ exports.addSuggested = function(req, res) {
 //Get user with lists packed in
 exports.oneUser = function(req, res) {
     function matchScoreAlgorithm(userPersonality, showPersonality){
+        //weignts, constants
         var neuroticismWeight = 0.2;
         var opennessWeight = 0.3;
         var extroversionWeight = 0.25;
         var conscientiousnessWeight = 0.125;
         var agreeablenessWeight = 0.125;
 
+        //scores, variable
         var neuroticismScore = Math.abs(userPersonality.Neuroticism - showPersonality.Neuroticism);
         var opennessScore = Math.abs(userPersonality.Openness - showPersonality.Openness);
         var extroversionScore = Math.abs(userPersonality.extroversion - showPersonality.extroversion);
         var conscientiousnessScore = Math.abs(userPersonality.Conscientiousness - showPersonality.Conscientiousness);
         var agreeablenessScore = Math.abs(userPersonality.Agreeableness - showPersonality.Agreeableness);
 
+        //weighted scores
         var weightedNeuroticismScore = neuroticismScore * neuroticismWeight;
         var weightedOpennessScore = opennessScore * opennessWeight;
         var weightedExtroversionScore = extroversionScore * extroversionWeight;
         var weightedConscientiousnessScore = conscientiousnessScore * conscientiousnessWeight;
         var weightedAgreeablenessScore = agreeablenessScore * agreeablenessWeight;
 
+        //combine and invert for final score
+        //integer between 0 and 100 represents users percent match to show, higher is better match
         var matchScore = 1 - (weightedNeuroticismScore + weightedOpennessScore + weightedConscientiousnessScore);
         matchScore = Math.round(matchScore*100);
         return matchScore;
@@ -178,8 +183,8 @@ exports.oneUser = function(req, res) {
             users[0]._shows_to_watch[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
         });
 
-        //for now only the first user created is available
-        var firstUser = users[0]
+        //for now only the first user created is made available available
+        var firstUser = users[0];
         res.json(firstUser);
     });
 };
