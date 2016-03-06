@@ -11,6 +11,7 @@
 		C221E8141C8BF52000873C1D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C221E8131C8BF52000873C1D /* DetailViewController.swift */; };
 		C2637EF41C8C13D300A73EF3 /* BEBAS___.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2637EF21C8C13D300A73EF3 /* BEBAS___.ttf */; };
 		C2637EF51C8C13D300A73EF3 /* Flat-it License.txt in Resources */ = {isa = PBXBuildFile; fileRef = C2637EF31C8C13D300A73EF3 /* Flat-it License.txt */; };
+		C266FE361C8CA594008023C3 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = C266FE351C8CA594008023C3 /* splash.png */; };
 		C29BECED1C8B5E060066ED1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */; };
 		C29BECEF1C8B5E060066ED1F /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BECEE1C8B5E060066ED1F /* MyViewController.swift */; };
 		C29BECF21C8B5E060066ED1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C29BECF01C8B5E060066ED1F /* Main.storyboard */; };
@@ -28,6 +29,10 @@
 		C2A33B011C8C440A0092E570 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A33B001C8C440A0092E570 /* AudioToolbox.framework */; };
 		C2A33B031C8C44680092E570 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A33B021C8C44680092E570 /* libc++.tbd */; };
 		C2A33B051C8C47DD0092E570 /* ListenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A33B041C8C47DD0092E570 /* ListenViewController.swift */; };
+		C2A33B151C8C9F3A0092E570 /* STAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A33B121C8C9F3A0092E570 /* STAnimationProtocol.swift */; };
+		C2A33B161C8C9F3A0092E570 /* STConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A33B131C8C9F3A0092E570 /* STConfiguration.swift */; };
+		C2A33B171C8C9F3A0092E570 /* STSpotLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A33B141C8C9F3A0092E570 /* STSpotLoadView.swift */; };
+		C2A33B191C8CA2970092E570 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A33B181C8CA2970092E570 /* LoadingViewController.swift */; };
 		C2F264301C8BAA26008E461B /* TVShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F2642F1C8BAA26008E461B /* TVShowTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +60,7 @@
 		C221E8131C8BF52000873C1D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = ../DetailViewController.swift; sourceTree = "<group>"; };
 		C2637EF21C8C13D300A73EF3 /* BEBAS___.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.ttf"; sourceTree = "<group>"; };
 		C2637EF31C8C13D300A73EF3 /* Flat-it License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Flat-it License.txt"; sourceTree = "<group>"; };
+		C266FE351C8CA594008023C3 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		C29BECE91C8B5E060066ED1F /* NBCHackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBCHackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C29BECEE1C8B5E060066ED1F /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +88,10 @@
 		C2A33B001C8C440A0092E570 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C2A33B021C8C44680092E570 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		C2A33B041C8C47DD0092E570 /* ListenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenViewController.swift; sourceTree = "<group>"; };
+		C2A33B121C8C9F3A0092E570 /* STAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STAnimationProtocol.swift; sourceTree = "<group>"; };
+		C2A33B131C8C9F3A0092E570 /* STConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STConfiguration.swift; sourceTree = "<group>"; };
+		C2A33B141C8C9F3A0092E570 /* STSpotLoadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STSpotLoadView.swift; sourceTree = "<group>"; };
+		C2A33B181C8CA2970092E570 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		C2F2642F1C8BAA26008E461B /* TVShowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShowTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,9 +159,11 @@
 		C29BECE01C8B5E060066ED1F = {
 			isa = PBXGroup;
 			children = (
+				C2A33B111C8C9F3A0092E570 /* STSpotLoadView */,
 				C2A33AF61C8C43DD0092E570 /* ACRCloudLibraies */,
 				C2637EF11C8C13D300A73EF3 /* Bebas */,
 				C29BED1E1C8B87690066ED1F /* bridging-header.h */,
+				C266FE351C8CA594008023C3 /* splash.png */,
 				C29BECEB1C8B5E060066ED1F /* NBCHackathon */,
 				C29BED001C8B5E060066ED1F /* NBCHackathonTests */,
 				C29BED0B1C8B5E060066ED1F /* NBCHackathonUITests */,
@@ -177,6 +189,7 @@
 				C2A33AEB1C8C43290092E570 /* acrcloud_local_db */,
 				C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */,
 				C29BECF01C8B5E060066ED1F /* Main.storyboard */,
+				C2A33B181C8CA2970092E570 /* LoadingViewController.swift */,
 				C2F2642F1C8BAA26008E461B /* TVShowTableViewCell.swift */,
 				C2A33B041C8C47DD0092E570 /* ListenViewController.swift */,
 				C29BECEE1C8B5E060066ED1F /* MyViewController.swift */,
@@ -234,6 +247,16 @@
 				C2A33AF91C8C43DD0092E570 /* ACRCloudRecognition.h */,
 			);
 			path = include;
+			sourceTree = "<group>";
+		};
+		C2A33B111C8C9F3A0092E570 /* STSpotLoadView */ = {
+			isa = PBXGroup;
+			children = (
+				C2A33B121C8C9F3A0092E570 /* STAnimationProtocol.swift */,
+				C2A33B131C8C9F3A0092E570 /* STConfiguration.swift */,
+				C2A33B141C8C9F3A0092E570 /* STSpotLoadView.swift */,
+			);
+			path = STSpotLoadView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2A33AF01C8C43290092E570 /* afp.iv in Resources */,
+				C266FE361C8CA594008023C3 /* splash.png in Resources */,
 				C29BECF71C8B5E060066ED1F /* LaunchScreen.storyboard in Resources */,
 				C29BECF41C8B5E060066ED1F /* Assets.xcassets in Resources */,
 				C2637EF51C8C13D300A73EF3 /* Flat-it License.txt in Resources */,
@@ -422,13 +446,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2A33B171C8C9F3A0092E570 /* STSpotLoadView.swift in Sources */,
 				C2A33AF51C8C43340092E570 /* ViewController.m in Sources */,
 				C2A33AE91C8C20A70092E570 /* GalleryCell.swift in Sources */,
 				C29BECEF1C8B5E060066ED1F /* MyViewController.swift in Sources */,
 				C2F264301C8BAA26008E461B /* TVShowTableViewCell.swift in Sources */,
+				C2A33B161C8C9F3A0092E570 /* STConfiguration.swift in Sources */,
 				C2A33B051C8C47DD0092E570 /* ListenViewController.swift in Sources */,
 				C29BECED1C8B5E060066ED1F /* AppDelegate.swift in Sources */,
+				C2A33B191C8CA2970092E570 /* LoadingViewController.swift in Sources */,
 				C221E8141C8BF52000873C1D /* DetailViewController.swift in Sources */,
+				C2A33B151C8C9F3A0092E570 /* STAnimationProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

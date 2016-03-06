@@ -100,18 +100,40 @@
  
         self.resultView.text = result;
       NSArray *res = [result componentsSeparatedByString: @"\"name\"\:\""];
+      
       NSArray *res2 = [res[1] componentsSeparatedByString:@"\",\"title\":"];
       NSLog(@"%@", res2[0] );
-
+      
+    if([res2[0]  isEqual: @"MrRobot"])
+    {
+      self.pop.image = [UIImage imageNamed:@"0"];
+    }
+    else if([res2[0]  isEqual: @"Chicago Fire"])
+    {
+      self.pop.image = [UIImage imageNamed:@"0"];
+    }
+    else if([res2[0]  isEqual: @"TonightShowWithJimmyFallon"])
+    {
+      self.pop.image = [UIImage imageNamed:@"0"];
+    }
+      
       self.pop.hidden = FALSE;
         [_client stopRecordRec];
         _start = NO;
+      
+      [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hide) userInfo:nil repeats:FALSE];
+
 
 //        NSTimeInterval nowTime = [[NSDate date] timeIntervalSince1970];
 //        int cost = nowTime - startTime;
 //        self.costLable.text = [NSString stringWithFormat:@"cost : %ds", cost];
 
     });
+}
+-(void)hide
+{
+  self.pop.hidden = TRUE;
+  [self viewDidLoad];
 }
 
 -(void)handleVolume:(float)volume
