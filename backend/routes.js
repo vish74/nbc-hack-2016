@@ -71,7 +71,26 @@ exports.createShow = function(req, res) {
 exports.findShow = function(req, res) {
     Show.findOne({"name" : req.body.name}, function(err, show){
         if(err){console.log('err: ', err)}
-        res.send(show);
+        res.json(show);
+    });
+};
+
+exports.rateShow = function(req, res) {
+    Show.findOne({"_id" : req.params.show_id}, function(err, show){
+        if(err){console.log('err: ', err)}
+        if(show){
+            show.rating = req.params.rating;
+            show.save(function(err){
+                if(err){console.log('err: ', err)}
+                User.find(function(err, users){
+                    if(err){console.log('err: ', err)}
+                    if(users){
+                        users[0]._watched_shows.push(show._id);
+                        users[0].save;
+                    }
+                });
+            });
+        }
     });
 };
 
