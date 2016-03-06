@@ -69,7 +69,10 @@ exports.createShow = function(req, res) {
 
 //find show by name
 exports.findShow = function(req, res) {
-    
+    Show.findOne({"name" : req.body.name}, function(err, show){
+        if(err){console.log('err: ', err)}
+        res.send(show);
+    });
 };
 
 //Add to lists
@@ -130,7 +133,7 @@ exports.addSuggested = function(req, res) {
         users[0]._suggested_shows.push(showId);
         users[0]
         .save(function(err, user){
-            console.log(user);
+            // console.log(user);
         })
         res.redirect('/admin');
     });
