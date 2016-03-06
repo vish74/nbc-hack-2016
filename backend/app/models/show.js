@@ -11,6 +11,7 @@ var showSchema = new Schema({
     episodeDuration: { type: Number, required: false },
     numberOfSeasons: { type: Number, required: false },
     whereToWatch: { type: String, required: false },
+    matchScore: { type: String, required: false },
     created_at: Date,
     updated_at: Date
 });
