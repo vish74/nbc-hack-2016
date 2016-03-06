@@ -7,3 +7,7 @@
 //
 
 //#import "ESTabBarController.h"
+
+#import "ACRCloudRecognition.h"
+#import "ACRCloudConfig.h"
+#import "ViewController.h"

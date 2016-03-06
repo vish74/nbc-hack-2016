@@ -36,7 +36,7 @@
         <!--listen-->
         <scene sceneID="FIE-aI-Wls">
             <objects>
-                <viewController id="MTj-qC-Vmj" sceneMemberID="viewController">
+                <viewController id="MTj-qC-Vmj" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8gk-3Q-IgI"/>
                         <viewControllerLayoutGuide type="bottom" id="Bex-V1-zYF"/>
@@ -60,22 +60,33 @@
                                     <rect key="frame" x="132" y="466" width="135" height="36"/>
                                 </variation>
                             </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pop2" translatesAutoresizingMaskIntoConstraints="NO" id="iNV-RE-DPU">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="40" y="41" width="334" height="479"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="w0H-Ge-Z0C"/>
                                 <exclude reference="9kG-Jv-d6B"/>
+                                <exclude reference="iNV-RE-DPU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="w0H-Ge-Z0C"/>
                                 <include reference="9kG-Jv-d6B"/>
+                                <include reference="iNV-RE-DPU"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="listen" image="ear-lobe-side-view-outline" id="ycs-Ym-CBe"/>
+                    <connections>
+                        <outlet property="pop" destination="iNV-RE-DPU" id="133-yE-HzD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ix-wQ-Bqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +117,7 @@
         <!--Flixer-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="NBCHackathon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MyViewController" customModule="NBCHackathon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -593,6 +604,7 @@
         <image name="gradient-black-transparent" width="1080" height="429"/>
         <image name="lists-bar-1" width="1080" height="151"/>
         <image name="plus" width="24" height="24"/>
+        <image name="pop2" width="1065" height="1382"/>
         <image name="selected" width="121" height="49"/>
         <image name="star-rating" width="271" height="48"/>
         <image name="star-rating-filled" width="270" height="47"/>
