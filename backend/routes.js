@@ -8,7 +8,16 @@ exports.index = function(req, res) {
 };
 
 exports.admin = function(req, res) {
-    res.render('../app/views/admin');
+    User.find(function(err, users){
+        if(err){console.log('err: ', err)}
+        Show.find(function(err, shows){
+            if(err){console.log('err: ', err)}
+            res.render('../app/views/admin', {
+                users: users,
+                shows: shows
+            });
+        })
+    });
 };
 
 //add user

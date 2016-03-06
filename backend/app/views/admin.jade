@@ -37,3 +37,13 @@ html
     form(role='form', action='/user/suggested/admin', method="post")
         input(type='text', name="show_id", placeholder='Show ID')
         input(type='submit', value='Submit')
+
+    h2 Users
+    for user in users
+        h4 User Name: #{user.name}
+        p User ID: #{user._id}
+
+    h2 Shows
+    for show in shows
+        h4 Show Name: #{show.name}
+        p Show ID: #{show._id}
