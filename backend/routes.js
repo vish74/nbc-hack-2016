@@ -147,7 +147,8 @@ exports.oneUser = function(req, res) {
 
     User
     .find()
-    .populate('_suggested_shows', '_watched_shows')
+    .populate('_suggested_shows')
+    .populate('_watched_shows')
     .populate('_shows_to_watch')
     .exec(function(err, users){
         var count = 10;
