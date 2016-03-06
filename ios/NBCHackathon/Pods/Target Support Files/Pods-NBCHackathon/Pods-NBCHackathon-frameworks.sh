@@ -55,9 +55,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-NBCHackathon/Alamofire.framework'
   install_framework 'Pods-NBCHackathon/ESTabBarController.framework'
   install_framework 'Pods-NBCHackathon/EZSwiftExtensions.framework'
+  install_framework 'Pods-NBCHackathon/MGSwipeTableCell.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-NBCHackathon/Alamofire.framework'
   install_framework 'Pods-NBCHackathon/ESTabBarController.framework'
   install_framework 'Pods-NBCHackathon/EZSwiftExtensions.framework'
+  install_framework 'Pods-NBCHackathon/MGSwipeTableCell.framework'
 fi

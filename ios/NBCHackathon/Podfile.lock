@@ -2,15 +2,18 @@ PODS:
   - Alamofire (3.2.1)
   - ESTabBarController (0.1.2)
   - EZSwiftExtensions (1.2.1)
+  - MGSwipeTableCell (1.5.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - ESTabBarController
   - EZSwiftExtensions
+  - MGSwipeTableCell
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   ESTabBarController: ef57e22d9835c7142d3681d38ac158006c40465f
   EZSwiftExtensions: efd14aa3128fb216af4c304595ccce3406adc6d8
+  MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
 
 COCOAPODS: 0.38.2

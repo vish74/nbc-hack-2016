@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MGSwipeTableCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-NBCHackathon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1257B72D9AF38ACB546CB2DE357A0AA8</key>
+		<key>11CB96350727BB865EAEFFE04660B0AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2ED4497C35496801D1B905462446E6D2</key>
+		<key>683A6A80D43E2E809D5A3BAB09B156AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7DF9DF8DCCD7F41EE37329282D9A7EB2</key>
+		<key>72E862C750D0AB5C1495EE7269155FDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FAEDDD10AE4AC7E84BA0FF949FACB696</key>
+		<key>A039968A0B72AE0225696E3F630B5D17</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A6087B1CF37725CB54D4D3062686AA1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

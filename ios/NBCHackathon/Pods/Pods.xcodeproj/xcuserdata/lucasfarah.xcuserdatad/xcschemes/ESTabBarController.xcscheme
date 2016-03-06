@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D07A73E504001ADF87486C2"
+               BlueprintIdentifier = "EF4FD9EBF3387365A288B000"
                BuildableName = "ESTabBarController.framework"
                BlueprintName = "ESTabBarController"
                ReferencedContainer = "container:Pods.xcodeproj">

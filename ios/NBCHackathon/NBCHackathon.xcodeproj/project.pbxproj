@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		199EA5EDAB8ABE148A0F5723 /* Pods_NBCHackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE612192E4F0ACD1DDDC73B /* Pods_NBCHackathon.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C221E8141C8BF52000873C1D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C221E8131C8BF52000873C1D /* DetailViewController.swift */; };
+		C2637EF41C8C13D300A73EF3 /* BEBAS___.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2637EF21C8C13D300A73EF3 /* BEBAS___.ttf */; };
+		C2637EF51C8C13D300A73EF3 /* Flat-it License.txt in Resources */ = {isa = PBXBuildFile; fileRef = C2637EF31C8C13D300A73EF3 /* Flat-it License.txt */; };
 		C29BECED1C8B5E060066ED1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */; };
 		C29BECEF1C8B5E060066ED1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BECEE1C8B5E060066ED1F /* ViewController.swift */; };
 		C29BECF21C8B5E060066ED1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C29BECF01C8B5E060066ED1F /* Main.storyboard */; };
@@ -39,6 +42,9 @@
 		45A25C157981F3AFF1574FA2 /* Pods-NBCHackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCHackathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-NBCHackathon/Pods-NBCHackathon.release.xcconfig"; sourceTree = "<group>"; };
 		9FE612192E4F0ACD1DDDC73B /* Pods_NBCHackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCHackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A813E972E3C41FAAC72C55D4 /* Pods-NBCHackathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCHackathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NBCHackathon/Pods-NBCHackathon.debug.xcconfig"; sourceTree = "<group>"; };
+		C221E8131C8BF52000873C1D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = ../DetailViewController.swift; sourceTree = "<group>"; };
+		C2637EF21C8C13D300A73EF3 /* BEBAS___.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.ttf"; sourceTree = "<group>"; };
+		C2637EF31C8C13D300A73EF3 /* Flat-it License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Flat-it License.txt"; sourceTree = "<group>"; };
 		C29BECE91C8B5E060066ED1F /* NBCHackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBCHackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C29BECEE1C8B5E060066ED1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,9 +105,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C2637EF11C8C13D300A73EF3 /* Bebas */ = {
+			isa = PBXGroup;
+			children = (
+				C2637EF21C8C13D300A73EF3 /* BEBAS___.ttf */,
+				C2637EF31C8C13D300A73EF3 /* Flat-it License.txt */,
+			);
+			path = Bebas;
+			sourceTree = "<group>";
+		};
 		C29BECE01C8B5E060066ED1F = {
 			isa = PBXGroup;
 			children = (
+				C2637EF11C8C13D300A73EF3 /* Bebas */,
 				C29BED1E1C8B87690066ED1F /* bridging-header.h */,
 				C29BECEB1C8B5E060066ED1F /* NBCHackathon */,
 				C29BED001C8B5E060066ED1F /* NBCHackathonTests */,
@@ -126,9 +142,10 @@
 			isa = PBXGroup;
 			children = (
 				C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */,
-				C29BECEE1C8B5E060066ED1F /* ViewController.swift */,
 				C29BECF01C8B5E060066ED1F /* Main.storyboard */,
 				C2F2642F1C8BAA26008E461B /* TVShowTableViewCell.swift */,
+				C29BECEE1C8B5E060066ED1F /* ViewController.swift */,
+				C221E8131C8BF52000873C1D /* DetailViewController.swift */,
 				C29BECF31C8B5E060066ED1F /* Assets.xcassets */,
 				C29BECF51C8B5E060066ED1F /* LaunchScreen.storyboard */,
 				C29BECF81C8B5E060066ED1F /* Info.plist */,
@@ -263,6 +280,8 @@
 			files = (
 				C29BECF71C8B5E060066ED1F /* LaunchScreen.storyboard in Resources */,
 				C29BECF41C8B5E060066ED1F /* Assets.xcassets in Resources */,
+				C2637EF51C8C13D300A73EF3 /* Flat-it License.txt in Resources */,
+				C2637EF41C8C13D300A73EF3 /* BEBAS___.ttf in Resources */,
 				C29BECF21C8B5E060066ED1F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +358,7 @@
 				C29BECEF1C8B5E060066ED1F /* ViewController.swift in Sources */,
 				C2F264301C8BAA26008E461B /* TVShowTableViewCell.swift in Sources */,
 				C29BECED1C8B5E060066ED1F /* AppDelegate.swift in Sources */,
+				C221E8141C8BF52000873C1D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

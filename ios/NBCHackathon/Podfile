@@ -4,6 +4,7 @@ use_frameworks!
 target 'NBCHackathon' do
   pod 'ESTabBarController'
   pod 'EZSwiftExtensions'
+  pod 'MGSwipeTableCell'
 
   pod 'Alamofire', '~> 3.0'
 end

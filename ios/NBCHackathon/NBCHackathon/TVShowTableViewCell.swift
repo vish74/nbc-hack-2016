@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class TVShowTableViewCell: UITableViewCell {
+import MGSwipeTableCell
+class TVShowTableViewCell: MGSwipeTableCell {
 
   @IBAction func butAdd(sender: AnyObject) {
   }
