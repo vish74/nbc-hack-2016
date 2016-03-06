@@ -211,6 +211,31 @@ exports.oneUser = function(req, res) {
     });
 };
 
+exports.loadSampleData = function(req, res){
+    var lucasUser = new User({ "name" : "Lucas Farah", "personality" : "{\"Neuroticism\" : 0.23852331727306597, \"Openness\" : 0.19985873018309458, \"Extroversion\" : 0.5250972377475239, \"Conscientiousness\" : 0.6896876186993252, \"Agreeableness\" : 0.4824766686919894}"});
+
+    lucasUser.save(function(err){
+        if(err){console.log(err);}
+    });
+
+    var show1 = new Show({"name" : "Game of Thrones", "description" : "While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, return after thousands of years in the North.", "personality" : "{\"Neuroticism\" : 0.43852331727306597, \"Openness\" : 0.53985873018309458, \"Extroversion\" : 0.3250972377475239, \"Conscientiousness\" : 0.9896876186993252, \"Agreeableness\" : 0.6824766686919894}", "tone" : "{\"Anger\": 0.65324, \"Disgust\": 0.15324, \"Fear\": 0.25324, \"Joy\": 0.55324, \"Sadness\": 0.85324, \"Analytical\": 0.75324,  \"Confident\": 0.95324,  \"Tentative\": 0.75324,  \"Anger\": 0.15324}", "picURL" : "http://www.osunatierradedragones.es/images/drgon.jpg", "episodeDuration" : 60, "numberOfSeasons" : 5, "whereToWatch" : "http://www.hbogo.com/game-of-thrones-interactive-features/"});
+    show1.save(function(err){
+        if(err){console.log(err);}
+    });
+
+    var show2 = new Show({"name" : "The Expanse", "description" : "A police detective in the asteroid belt, the first officer of an interplanetary ice freighter and an earth-bound United Nations executive slowly discover a vast.", "personality" : "{\"Neuroticism\" : 0.63852331727306597, \"Openness\" : 0.33985873018309458, \"Extroversion\" : 0.1250972377475239, \"Conscientiousness\" : 0.2896876186993252, \"Agreeableness\" : 0.8824766686919894}", "tone" : {"Anger": 0.15324, "Disgust": 0.55324, "Fear": 0.35324, "Joy": 0.25324, "Sadness": 0.65324, "Analytical": 0.95324,  "Confident": 0.35324,  "Tentative": 0.55324,  "Anger": 0.85324}, "picURL" : "http://cdn.hitfix.com/photos/6170220/The-Expanse-header.jpg", "episodeDuration" : 60, "numberOfSeasons" : 1, "whereToWatch" : "http://www.syfy.com/theexpanse/episodes"});
+    show2.save(function(err){
+        if(err){console.log(err);}
+    });
+
+    var show3 = new Show({ "name" : "Sense8", "description" : "A group of people around the world are suddenly linked mentally, and must find a way to survive being.", "personality" : "{\"Neuroticism\" : 0.43852331727306597, \"Openness\" : 0.13985873018309458, \"Extroversion\" : 0.5250972377475239, \"Conscientiousness\" : 0.4896876186993252, \"Agreeableness\" : 0.7824766686919894}", "tone" : "{\"Anger\": 0.95324, \"Disgust\": 0.75324, \"Fear\": 0.25324, \"Joy\": 0.15324, \"Sadness\": 0.75324, \"Analytical\": 0.55324,  \"Confident\": 0.15324,  \"Tentative\": 0.65324,  \"Anger\": 0.55324}", "picURL" : "https://pbs.twimg.com/profile_images/606887678978572288/6SQ0c119.jpg", "episodeDuration" : 60, "numberOfSeasons" : 1, "whereToWatch" : "http://www.netflix.com/watch/80025744"});
+    show3.save(function(err){
+        if(err){console.log(err);}
+    });
+
+    res.send('data was probably loaded');
+}
+
 //Remove this later
 exports.tonetest = function(req, res) {
 	var text = 'ARMONK, N.Y. - 11 Jan 2012: IBM (NYSE: IBM) today announced that it set a new U.S. patent record in 2011, marking the 19th consecutive year that the company has led the annual list of patent recipients. IBM inventors earned a record 6,180 U.S. patents in 2011, more than quadrupling Hewlett-Packard’s issuances and exceeding by six times those of Oracle/Sun.  More than 8,000 IBMers living in 46 different U.S. states and 36 countries are responsible for the companys record-breaking 2011 patent tally. IBM inventors who do not reside in the U.S. contributed to more than 26% of the companys 2011 patents.  The more than 6,000 patents IBMers received in 2011 represent a range of inventions that enable new innovations and add significant value to the companys products, services, including smarter solutions for retail, banking, healthcare, transportation and other industries. These patented inventions also span a wide range of computing technologies poised to support a new generation of more cognitive, intelligent and insight-driven systems, processes and infrastructures for smarter commerce, shopping, medicine, transportation, and more.  "IBMs commitment to invention and scientific exploration is unmatched in any industry and the results of this dedication to enabling innovation is evidenced in our nearly two decades of U.S. patent leadership,” said Ken King, general manager, Intellectual Property and vice president, Research Business Development, IBM. “The inventions we patent each year deliver significant value to IBM, our clients and partners and demonstrate a measurable return on our approximately $6 billion annual investment in research and development.”';

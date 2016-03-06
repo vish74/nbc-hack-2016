@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Get Routes
 app.get('/', routes.index);
 app.get('/admin', routes.admin);
+app.get('/admin/load-samples', routes.loadSampleData);
 app.get('/user', routes.oneUser);
 app.get('/show/delete/:show_id', routes.deleteShow);
 app.get('/user/delete/:user_id', routes.deleteUser);
