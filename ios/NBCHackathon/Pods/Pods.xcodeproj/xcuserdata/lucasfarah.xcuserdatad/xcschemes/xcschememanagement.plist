@@ -3,8 +3,50 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict/>
+	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ESTabBarController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EZSwiftExtensions.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NBCHackathon.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>1257B72D9AF38ACB546CB2DE357A0AA8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2ED4497C35496801D1B905462446E6D2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7DF9DF8DCCD7F41EE37329282D9A7EB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAEDDD10AE4AC7E84BA0FF949FACB696</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

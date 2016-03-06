@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		199EA5EDAB8ABE148A0F5723 /* Pods_NBCHackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE612192E4F0ACD1DDDC73B /* Pods_NBCHackathon.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C29BECED1C8B5E060066ED1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */; };
 		C29BECEF1C8B5E060066ED1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BECEE1C8B5E060066ED1F /* ViewController.swift */; };
 		C29BECF21C8B5E060066ED1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C29BECF01C8B5E060066ED1F /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		C29BECF71C8B5E060066ED1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C29BECF51C8B5E060066ED1F /* LaunchScreen.storyboard */; };
 		C29BED021C8B5E060066ED1F /* NBCHackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BED011C8B5E060066ED1F /* NBCHackathonTests.swift */; };
 		C29BED0D1C8B5E060066ED1F /* NBCHackathonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BED0C1C8B5E060066ED1F /* NBCHackathonUITests.swift */; };
+		C2F264301C8BAA26008E461B /* TVShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F2642F1C8BAA26008E461B /* TVShowTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45A25C157981F3AFF1574FA2 /* Pods-NBCHackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCHackathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-NBCHackathon/Pods-NBCHackathon.release.xcconfig"; sourceTree = "<group>"; };
+		9FE612192E4F0ACD1DDDC73B /* Pods_NBCHackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCHackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A813E972E3C41FAAC72C55D4 /* Pods-NBCHackathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCHackathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NBCHackathon/Pods-NBCHackathon.debug.xcconfig"; sourceTree = "<group>"; };
 		C29BECE91C8B5E060066ED1F /* NBCHackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBCHackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C29BECEE1C8B5E060066ED1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,8 @@
 		C29BED081C8B5E060066ED1F /* NBCHackathonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBCHackathonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29BED0C1C8B5E060066ED1F /* NBCHackathonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBCHackathonUITests.swift; sourceTree = "<group>"; };
 		C29BED0E1C8B5E060066ED1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C29BED1E1C8B87690066ED1F /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
+		C2F2642F1C8BAA26008E461B /* TVShowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShowTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				199EA5EDAB8ABE148A0F5723 /* Pods_NBCHackathon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,13 +82,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		615CB76EC0019926F0382446 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9FE612192E4F0ACD1DDDC73B /* Pods_NBCHackathon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAC01AA5AFA16FC854F14DAA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A813E972E3C41FAAC72C55D4 /* Pods-NBCHackathon.debug.xcconfig */,
+				45A25C157981F3AFF1574FA2 /* Pods-NBCHackathon.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C29BECE01C8B5E060066ED1F = {
 			isa = PBXGroup;
 			children = (
+				C29BED1E1C8B87690066ED1F /* bridging-header.h */,
 				C29BECEB1C8B5E060066ED1F /* NBCHackathon */,
 				C29BED001C8B5E060066ED1F /* NBCHackathonTests */,
 				C29BED0B1C8B5E060066ED1F /* NBCHackathonUITests */,
 				C29BECEA1C8B5E060066ED1F /* Products */,
+				AAC01AA5AFA16FC854F14DAA /* Pods */,
+				615CB76EC0019926F0382446 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +128,7 @@
 				C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */,
 				C29BECEE1C8B5E060066ED1F /* ViewController.swift */,
 				C29BECF01C8B5E060066ED1F /* Main.storyboard */,
+				C2F2642F1C8BAA26008E461B /* TVShowTableViewCell.swift */,
 				C29BECF31C8B5E060066ED1F /* Assets.xcassets */,
 				C29BECF51C8B5E060066ED1F /* LaunchScreen.storyboard */,
 				C29BECF81C8B5E060066ED1F /* Info.plist */,
@@ -132,9 +161,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C29BED111C8B5E060066ED1F /* Build configuration list for PBXNativeTarget "NBCHackathon" */;
 			buildPhases = (
+				8E67192931B12FFC8FF3FE55 /* Check Pods Manifest.lock */,
 				C29BECE51C8B5E060066ED1F /* Sources */,
 				C29BECE61C8B5E060066ED1F /* Frameworks */,
 				C29BECE71C8B5E060066ED1F /* Resources */,
+				46DAFBD4D8C2FAC5BAFE6C2C /* Copy Pods Resources */,
+				3B3E486A029E3AFEBE734B1A /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,12 +283,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3B3E486A029E3AFEBE734B1A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NBCHackathon/Pods-NBCHackathon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46DAFBD4D8C2FAC5BAFE6C2C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NBCHackathon/Pods-NBCHackathon-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E67192931B12FFC8FF3FE55 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C29BECE51C8B5E060066ED1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C29BECEF1C8B5E060066ED1F /* ViewController.swift in Sources */,
+				C2F264301C8BAA26008E461B /* TVShowTableViewCell.swift in Sources */,
 				C29BECED1C8B5E060066ED1F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,23 +476,41 @@
 		};
 		C29BED121C8B5E060066ED1F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A813E972E3C41FAAC72C55D4 /* Pods-NBCHackathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = NBCHackathon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = farah.lucas.NBCHackathon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "bridging-header.h";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
 			name = Debug;
 		};
 		C29BED131C8B5E060066ED1F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45A25C157981F3AFF1574FA2 /* Pods-NBCHackathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = NBCHackathon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = farah.lucas.NBCHackathon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "bridging-header.h";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 			};
 			name = Release;
 		};
@@ -482,6 +581,7 @@
 				C29BED131C8B5E060066ED1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C29BED141C8B5E060066ED1F /* Build configuration list for PBXNativeTarget "NBCHackathonTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +590,7 @@
 				C29BED161C8B5E060066ED1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C29BED171C8B5E060066ED1F /* Build configuration list for PBXNativeTarget "NBCHackathonUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +599,7 @@
 				C29BED191C8B5E060066ED1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
