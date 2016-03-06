@@ -53,7 +53,8 @@ app.post('/user/have-watched/:show_id', routes.addHaveWatched);
 app.post('/user/suggested/:show_id', routes.addSuggested); //probably not needed, might use for ingesting shows
 app.post('/show/', routes.findShow); //find show by name, perhaps not needed
 
-
+//Remove this later
+app.get('/tonetest', routes.tonetest);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
