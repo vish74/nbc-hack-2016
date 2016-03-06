@@ -12,6 +12,7 @@ class TVShowTableViewCell: MGSwipeTableCell {
 
   @IBAction func butAdd(sender: AnyObject) {
   }
+  @IBOutlet weak var lblatch: UILabel!
   @IBOutlet weak var lblTitleName: UILabel!
   @IBOutlet weak var lblStar: UIImageView!
   @IBOutlet weak var imgvPoster: UIImageView!

@@ -63,7 +63,7 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pop2" translatesAutoresizingMaskIntoConstraints="NO" id="iNV-RE-DPU">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="40" y="41" width="334" height="479"/>
+                                    <rect key="frame" x="-10" y="135" width="419" height="418"/>
                                 </variation>
                             </imageView>
                         </subviews>
@@ -218,17 +218,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="185"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bates" translatesAutoresizingMaskIntoConstraints="NO" id="hSY-6L-g1U">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bates" translatesAutoresizingMaskIntoConstraints="NO" id="hSY-6L-g1U">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="184"/>
-                                                    </variation>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient-black-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="Ail-w9-had">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="184"/>
-                                                    </variation>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-rating-filled" translatesAutoresizingMaskIntoConstraints="NO" id="bzu-Jj-heK">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -255,15 +249,14 @@
                                                         <constraint firstAttribute="height" constant="32" id="Bg2-B9-P6s"/>
                                                         <constraint firstAttribute="width" constant="32" id="fA8-3Y-F5c"/>
                                                     </constraints>
-                                                    <state key="normal" image="plus"/>
+                                                    <state key="normal" image="twitter.png"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="Bg2-B9-P6s"/>
                                                             <exclude reference="fA8-3Y-F5c"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="174" y="140" width="32" height="32"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="Bg2-B9-P6s"/>
                                                             <include reference="fA8-3Y-F5c"/>
@@ -273,6 +266,15 @@
                                                         <action selector="butAdd:" destination="eTa-FC-39M" eventType="touchUpInside" id="Zv4-pB-Pfb"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bates Motel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lD6-MI-VFF">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="26" y="121" width="136.5" height="31.5"/>
+                                                    </variation>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99% match" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXs-yJ-PO7">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
@@ -280,14 +282,8 @@
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                        <rect key="frame" x="112" y="16" width="106" height="25.5"/>
+                                                        <rect key="frame" x="16" y="12" width="106" height="25.5"/>
                                                     </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bates Motel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lD6-MI-VFF">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -298,13 +294,17 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="Ail-w9-had" secondAttribute="bottom" constant="-13" id="EX3-8l-SUS">
                                                     <variation key="heightClass=regular-widthClass=compact" constant="-7"/>
                                                 </constraint>
-                                                <constraint firstItem="wXs-yJ-PO7" firstAttribute="top" secondItem="Jx8-lD-s8R" secondAttribute="topMargin" constant="8" id="FVw-SV-S86"/>
+                                                <constraint firstItem="wXs-yJ-PO7" firstAttribute="top" secondItem="Jx8-lD-s8R" secondAttribute="topMargin" constant="8" id="FVw-SV-S86">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                                                </constraint>
                                                 <constraint firstItem="bzu-Jj-heK" firstAttribute="top" secondItem="lD6-MI-VFF" secondAttribute="bottom" constant="0.5" id="JyJ-ng-nha"/>
                                                 <constraint firstItem="hSY-6L-g1U" firstAttribute="leading" secondItem="Jx8-lD-s8R" secondAttribute="leadingMargin" constant="-8" id="P1l-hL-meN"/>
                                                 <constraint firstItem="Ail-w9-had" firstAttribute="top" secondItem="Jx8-lD-s8R" secondAttribute="topMargin" constant="-8" id="Pok-MW-hdn"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="867-UG-Nxh" secondAttribute="trailing" constant="26" id="S6E-LN-fEe"/>
                                                 <constraint firstItem="hSY-6L-g1U" firstAttribute="top" secondItem="Jx8-lD-s8R" secondAttribute="topMargin" constant="-8" id="Yf1-a9-fgY"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wXs-yJ-PO7" secondAttribute="trailing" constant="14" id="d1e-SM-DEq"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wXs-yJ-PO7" secondAttribute="trailing" constant="14" id="d1e-SM-DEq">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="284"/>
+                                                </constraint>
                                                 <constraint firstAttribute="bottomMargin" secondItem="bzu-Jj-heK" secondAttribute="bottom" constant="4.5" id="hCc-O0-Jsh"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="867-UG-Nxh" secondAttribute="bottom" constant="4.5" id="jk5-e3-nVj"/>
                                                 <constraint firstItem="bzu-Jj-heK" firstAttribute="leading" secondItem="Jx8-lD-s8R" secondAttribute="leadingMargin" constant="18" id="t8a-se-w8z"/>
@@ -322,8 +322,8 @@
                                                     <exclude reference="Ail-w9-had"/>
                                                     <exclude reference="bzu-Jj-heK"/>
                                                     <exclude reference="867-UG-Nxh"/>
-                                                    <exclude reference="wXs-yJ-PO7"/>
                                                     <exclude reference="lD6-MI-VFF"/>
+                                                    <exclude reference="wXs-yJ-PO7"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="S6E-LN-fEe"/>
@@ -350,8 +350,8 @@
                                                     <include reference="Ail-w9-had"/>
                                                     <include reference="bzu-Jj-heK"/>
                                                     <include reference="867-UG-Nxh"/>
-                                                    <include reference="wXs-yJ-PO7"/>
                                                     <include reference="lD6-MI-VFF"/>
+                                                    <include reference="wXs-yJ-PO7"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="S6E-LN-fEe"/>
@@ -378,6 +378,7 @@
                                             <outlet property="lblMatch" destination="wXs-yJ-PO7" id="Dt9-Yb-yhU"/>
                                             <outlet property="lblStar" destination="bzu-Jj-heK" id="oEp-m0-uUZ"/>
                                             <outlet property="lblTitleName" destination="lD6-MI-VFF" id="jFo-1a-HIw"/>
+                                            <outlet property="lblatch" destination="wXs-yJ-PO7" id="0Np-KO-B4z"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -850,11 +851,11 @@
         <image name="ear-lobe-side-view-outline" width="20" height="30"/>
         <image name="gradient-black-transparent" width="1080" height="429"/>
         <image name="lists-bar-1" width="1080" height="151"/>
-        <image name="plus" width="24" height="24"/>
         <image name="pop2" width="1065" height="1382"/>
         <image name="selected" width="121" height="49"/>
         <image name="splash.png" width="1080" height="1859"/>
         <image name="star-rating" width="271" height="48"/>
         <image name="star-rating-filled" width="270" height="47"/>
+        <image name="twitter.png" width="80" height="67"/>
     </resources>
 </document>

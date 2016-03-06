@@ -48,6 +48,10 @@ class MyViewController: UIViewController, UITableViewDataSource, MGSwipeTableCel
 
 		let dic = self.tableArray[indexPath.row]
 		cell.lblTitleName.text = dic["name"] as? String
+		if let match = dic["matchScore"]
+		{
+			cell.lblatch.text = "\(match)%"
+		}
 		cell.imgvPoster.image = UIImage(urlString: dic["picURL"] as! String)
 		let leftBut = MGSwipeButton(title: "", icon: UIImage(named: "plus"), backgroundColor: UIColor(hexString: "699B60"), callback: {
 			(sender: MGSwipeTableCell!) -> Bool in
@@ -205,7 +209,67 @@ class MyViewController: UIViewController, UITableViewDataSource, MGSwipeTableCel
 	}
 
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
+		var mood = ""
+		if indexPath.row == 0
+		{
+			mood = "feel_good"
+		}
+		else if indexPath.row == 1
+		{
+			mood = "emotional"
+		}
+		else if indexPath.row == 2
+		{
+			mood = "funny"
+		} else if indexPath.row == 3
+		{
+			mood = "exciting"
+		} else if indexPath.row == 4
+		{
+			mood = "cerebral"
+		} else if indexPath.row == 5
+		{
+			mood = "suspenseful"
+		} else if indexPath.row == 6
+		{
+			mood = "inspiring"
+		} else if indexPath.row == 7
+		{
+			mood = "dark"
+		} else if indexPath.row == 8
+		{
+			mood = "quirky"
+		}
+
+		var resultArray = [[String: AnyObject]]()
+		for dicInfo1 in tableArray
+		{
+			if let tones = dicInfo1["tone"]
+			{
+				let tone = self.convertStringToDictionary(tones as! String)
+				if tone[mood] as! Bool == true
+				{
+					resultArray.append(dicInfo1)
+				}
+			}
+		}
+
+		self.tableArray = resultArray
+		self.table.reloadData()
 		print("\(indexPath.row) selected")
 		self.popView.removeFromSuperview()
+	}
+
+	func convertStringToDictionary(json: String) -> [String: AnyObject] {
+		if let data = json.dataUsingEncoding(NSUTF8StringEncoding) {
+			var error: NSError?
+			let json = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: AnyObject]
+			if let error = error {
+				print(error)
+			}
+			return json!
+		}
+		return [String: AnyObject]()
 	}
 }

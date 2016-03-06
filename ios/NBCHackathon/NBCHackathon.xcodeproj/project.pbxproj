@@ -12,6 +12,10 @@
 		C2637EF41C8C13D300A73EF3 /* BEBAS___.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2637EF21C8C13D300A73EF3 /* BEBAS___.ttf */; };
 		C2637EF51C8C13D300A73EF3 /* Flat-it License.txt in Resources */ = {isa = PBXBuildFile; fileRef = C2637EF31C8C13D300A73EF3 /* Flat-it License.txt */; };
 		C266FE361C8CA594008023C3 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = C266FE351C8CA594008023C3 /* splash.png */; };
+		C266FE3A1C8CAB0D008023C3 /* TonightShowWithJimmyFallon.png in Resources */ = {isa = PBXBuildFile; fileRef = C266FE371C8CAB0D008023C3 /* TonightShowWithJimmyFallon.png */; };
+		C266FE3C1C8CAB0D008023C3 /* MrRobot.png in Resources */ = {isa = PBXBuildFile; fileRef = C266FE391C8CAB0D008023C3 /* MrRobot.png */; };
+		C266FE3E1C8CADE3008023C3 /* ChigagoFire.png in Resources */ = {isa = PBXBuildFile; fileRef = C266FE3D1C8CADE3008023C3 /* ChigagoFire.png */; };
+		C266FE401C8CB216008023C3 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = C266FE3F1C8CB216008023C3 /* twitter.png */; };
 		C29BECED1C8B5E060066ED1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */; };
 		C29BECEF1C8B5E060066ED1F /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29BECEE1C8B5E060066ED1F /* MyViewController.swift */; };
 		C29BECF21C8B5E060066ED1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C29BECF01C8B5E060066ED1F /* Main.storyboard */; };
@@ -61,6 +65,10 @@
 		C2637EF21C8C13D300A73EF3 /* BEBAS___.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.ttf"; sourceTree = "<group>"; };
 		C2637EF31C8C13D300A73EF3 /* Flat-it License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Flat-it License.txt"; sourceTree = "<group>"; };
 		C266FE351C8CA594008023C3 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		C266FE371C8CAB0D008023C3 /* TonightShowWithJimmyFallon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TonightShowWithJimmyFallon.png; sourceTree = "<group>"; };
+		C266FE391C8CAB0D008023C3 /* MrRobot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MrRobot.png; sourceTree = "<group>"; };
+		C266FE3D1C8CADE3008023C3 /* ChigagoFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChigagoFire.png; sourceTree = "<group>"; };
+		C266FE3F1C8CB216008023C3 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		C29BECE91C8B5E060066ED1F /* NBCHackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBCHackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29BECEC1C8B5E060066ED1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C29BECEE1C8B5E060066ED1F /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +172,10 @@
 				C2637EF11C8C13D300A73EF3 /* Bebas */,
 				C29BED1E1C8B87690066ED1F /* bridging-header.h */,
 				C266FE351C8CA594008023C3 /* splash.png */,
+				C266FE371C8CAB0D008023C3 /* TonightShowWithJimmyFallon.png */,
+				C266FE3D1C8CADE3008023C3 /* ChigagoFire.png */,
+				C266FE391C8CAB0D008023C3 /* MrRobot.png */,
+				C266FE3F1C8CB216008023C3 /* twitter.png */,
 				C29BECEB1C8B5E060066ED1F /* NBCHackathon */,
 				C29BED001C8B5E060066ED1F /* NBCHackathonTests */,
 				C29BED0B1C8B5E060066ED1F /* NBCHackathonUITests */,
@@ -369,10 +381,14 @@
 				C2A33AF01C8C43290092E570 /* afp.iv in Resources */,
 				C266FE361C8CA594008023C3 /* splash.png in Resources */,
 				C29BECF71C8B5E060066ED1F /* LaunchScreen.storyboard in Resources */,
+				C266FE3E1C8CADE3008023C3 /* ChigagoFire.png in Resources */,
 				C29BECF41C8B5E060066ED1F /* Assets.xcassets in Resources */,
+				C266FE3C1C8CAB0D008023C3 /* MrRobot.png in Resources */,
 				C2637EF51C8C13D300A73EF3 /* Flat-it License.txt in Resources */,
 				C2637EF41C8C13D300A73EF3 /* BEBAS___.ttf in Resources */,
 				C29BECF21C8B5E060066ED1F /* Main.storyboard in Resources */,
+				C266FE401C8CB216008023C3 /* twitter.png in Resources */,
+				C266FE3A1C8CAB0D008023C3 /* TonightShowWithJimmyFallon.png in Resources */,
 				C2A33AEF1C8C43290092E570 /* afp.df in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
