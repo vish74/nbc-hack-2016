@@ -25,7 +25,7 @@ exports.admin = function(req, res) {
 exports.testWatson = function(req, res){
     var watsonApi = require('./app/helpers/watsonApi');
 
-    ingestion.showsJSON.forEach(function(show){
+    ingestion.showsJSON1.forEach(function(show){
         var text = show.description;
         // console.log('text: ', text)
         var rawShow = show;
@@ -36,7 +36,9 @@ exports.testWatson = function(req, res){
 
         testWatson(function(body){
             var parsedBody = JSON.parse(body);
-            // console.log('parsedBody: ', parsedBody);
+            console.log('parsedBody: ', parsedBody);
+
+            if(parsedBody.error){return}
 
             var rawTone = {};
             parsedBody.document_tone.tone_categories[0].tones.forEach(function(tone){
@@ -315,6 +317,7 @@ exports.addSuggested = function(req, res) {
 //Get user with lists packed in
 exports.oneUser = function(req, res) {
     function matchScoreAlgorithm(userPersonality, showPersonality){
+
         //weignts, constants
         var neuroticismWeight = 0.2;
         var opennessWeight = 0.3;
@@ -323,11 +326,12 @@ exports.oneUser = function(req, res) {
         var agreeablenessWeight = 0.125;
 
         //scores, variable
-        var neuroticismScore = Math.abs(userPersonality.Neuroticism - showPersonality.Neuroticism);
-        var opennessScore = Math.abs(userPersonality.Openness - showPersonality.Openness);
+        var neuroticismScore = Math.abs(userPersonality.Neuroticism - showPersonality.neuroticism);
+        var opennessScore = Math.abs(userPersonality.Openness - showPersonality.openness);
         var extraversionScore = Math.abs(userPersonality.extraversion - showPersonality.extraversion);
-        var conscientiousnessScore = Math.abs(userPersonality.Conscientiousness - showPersonality.Conscientiousness);
-        var agreeablenessScore = Math.abs(userPersonality.Agreeableness - showPersonality.Agreeableness);
+        var conscientiousnessScore = Math.abs(userPersonality.Conscientiousness - showPersonality.conscientiousness);
+        var agreeablenessScore = Math.abs(userPersonality.Agreeableness - showPersonality.agreeableness);
+
 
         //weighted scores
         var weightedNeuroticismScore = neuroticismScore * neuroticismWeight;
@@ -353,9 +357,20 @@ exports.oneUser = function(req, res) {
             var parsedUserPersonality = JSON.parse(users[0].personality);
             var parsedShowPersonality = JSON.parse(show.personality);
 
-            //apply match score algorithm to all 3 show arrays
             users[0]._suggested_shows[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
+        });
+
+        users[0]._watched_shows.forEach(function(show, index, array){
+            var parsedUserPersonality = JSON.parse(users[0].personality);
+            var parsedShowPersonality = JSON.parse(show.personality);
+
             users[0]._watched_shows[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
+        });
+
+        users[0]._shows_to_watch.forEach(function(show, index, array){
+            var parsedUserPersonality = JSON.parse(users[0].personality);
+            var parsedShowPersonality = JSON.parse(show.personality);
+
             users[0]._shows_to_watch[index].matchScore = matchScoreAlgorithm(parsedUserPersonality, parsedShowPersonality);
         });
 
